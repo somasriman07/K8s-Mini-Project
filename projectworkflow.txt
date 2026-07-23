@@ -1,0 +1,102 @@
+1. Build the app (any) and test in local
+
+2. Start dockerhub and docker-desktop (sign-in to both)
+
+3. Prepare the Dockerfile in the project
+
+4. Create the Docker image and test it:
+
+   docker build -t kubernetes-test-app:latest .
+
+   docker images
+
+   docker run -p 5001:5001 kubernetes-test-app:latest
+5. Create deployment.yaml
+
+
+6. Install Minikube
+   Start Minikube:
+
+   minikube start
+
+   OR
+
+   minikube start --embed-certs
+
+# Check Minikube Status
+minikube status
+
+# Kubernetes Commands
+
+kubectl get all -A
+kubectl get pods -A
+kubectl get nodes -A
+
+# How to add a new node?
+
+minikube start --nodes=2
+
+OR
+
+minikube start --nodes=2 --embed-certs
+
+# Check Docker and Minikube Images
+
+minikube image list
+docker images
+
+# Load Docker Image into Minikube
+
+minikube image load kubernetes-test-app:latest
+
+# Deploy Application
+
+kubectl apply -f deployment.yaml     (Run from project directory)
+
+# Delete Deployment (Optional)
+
+kubectl delete deployment kubernetes-test-app
+
+# Verify Deployment
+
+kubectl get pods -A
+kubectl get nodes -A
+
+# Delete a Pod
+
+kubectl delete pod <pod-name/id>
+
+# Expose Service
+
+minikube service kubernetes-test-app
+
+# Open Kubernetes Dashboard
+
+minikube dashboard
+
+# Verify Endpoints & Services
+
+kubectl get endpoints
+kubectl get service
+
+------------------------------------------------------------
+
+# Load Balancing
+
+kubectl get pods
+
+# Stream Pod Logs
+
+kubectl logs -f <pod-id>
+
+
+# Performance Testing
+# Postman -> Collection -> Runs -> Performance
+# -> Run Performance Test
+# -> Performance
+# -> Fixed
+# -> 10 Users
+# -> 1 min
+
+# Stop Minikube
+minikube stop
